@@ -27,8 +27,21 @@ const eventJSONContent = JSON.parse(eventContent);
                                         
 _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
 
+
 let url;
 let payload;
+let usuariAsignatPR;
+
+switch(eventJSONContent.pull_request.assignee.login) {
+  case "sporokiii":
+    usuariAsignatPR = 359721064688910348;
+    break;
+  case y:
+    // code block
+    break;
+  default:
+    // code block
+}
 
 if (argv._.length === 0) {
   // If argument NOT provided, let Discord show the event informations.
@@ -41,7 +54,7 @@ if (argv._.length === 0) {
 
   url = process.env.DISCORD_WEBHOOK;
   payload = JSON.stringify({
-    content: 'TO: @spookiii URL: '+eventJSONContent.pull_request.url,
+    content: 'TO: <@'+usuariAsignatPR'> URL: '+eventJSONContent.pull_request.url,
     ...process.env.DISCORD_USERNAME && { username: eventJSONContent.pull_request.user.login },
     ...process.env.DISCORD_AVATAR && { avatar_url: eventJSONContent.pull_request.user.avatar_url },
     allowed_mentions: true,
