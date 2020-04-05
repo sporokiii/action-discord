@@ -40,8 +40,8 @@ if (argv._.length === 0) {
 
   url = process.env.DISCORD_WEBHOOK;
   payload = JSON.stringify({
-    content: message,
-    ...process.env.DISCORD_USERNAME && { username: process.env.GITHUB_EVENT_NAME.user.login },
+    content: JSON.stringify(JSON.parse(eventContent)),
+    ...process.env.DISCORD_USERNAME && { username: process.env.GITHUB_EVENT_NAME },
     ...process.env.DISCORD_AVATAR && { avatar_url: process.env.DISCORD_AVATAR },
   });
 }
