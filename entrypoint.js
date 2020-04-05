@@ -34,7 +34,7 @@ let usuariAsignatPR;
 
 switch(eventJSONContent.pull_request.assignee.login) {
   case "sporokiii":
-    usuariAsignatPR = 359721064688910348;
+    usuariAsignatPR = "359721064688910348";
     break;
   case y:
     // code block
