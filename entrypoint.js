@@ -23,7 +23,8 @@ REQUIRED_ENV_VARS.forEach(env => {
 });
 
 const eventContent = fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8');
-
+const eventJSONContent = JSON.parse(eventContent);
+                                        
 _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
 
 let url;
@@ -41,7 +42,7 @@ if (argv._.length === 0) {
   url = process.env.DISCORD_WEBHOOK;
   payload = JSON.stringify({
     content: message,
-    ...process.env.DISCORD_USERNAME && { username: process.env.GITHUB_EVENT_NAME },
+    ...process.env.DISCORD_USERNAME && { username: eventJSONContent.pull_request.user.login },
     ...process.env.DISCORD_AVATAR && { avatar_url: process.env.DISCORD_AVATAR },
   });
 }
@@ -50,7 +51,7 @@ if (argv._.length === 0) {
 
 (async () => {
   console.log('Sending message ...');
-  console.log(JSON.stringify(JSON.parse(eventContent)));
+
   await axios.post(
     `${url}?wait=true`,
     payload,
