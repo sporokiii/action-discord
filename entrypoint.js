@@ -44,6 +44,7 @@ if (argv._.length === 0) {
     content: 'TO: @spookiii URL: '+eventJSONContent.pull_request.url,
     ...process.env.DISCORD_USERNAME && { username: eventJSONContent.pull_request.user.login },
     ...process.env.DISCORD_AVATAR && { avatar_url: eventJSONContent.pull_request.user.avatar_url },
+    allowed_mentions: true,
   });
 }
 
