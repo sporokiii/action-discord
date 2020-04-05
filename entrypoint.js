@@ -41,7 +41,7 @@ if (argv._.length === 0) {
 
   url = process.env.DISCORD_WEBHOOK;
   payload = JSON.stringify({
-    content: 'TO: @'+eventJSONContent.pull_request.assignee.login +' URL: '+eventJSONContent.pull_request.url,
+    content: 'TO: @spookiii URL: '+eventJSONContent.pull_request.url,
     ...process.env.DISCORD_USERNAME && { username: eventJSONContent.pull_request.user.login },
     ...process.env.DISCORD_AVATAR && { avatar_url: eventJSONContent.pull_request.user.avatar_url },
   });
